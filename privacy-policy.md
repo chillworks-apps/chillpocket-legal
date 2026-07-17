@@ -1,6 +1,6 @@
 # Política de Privacidad — ChillPocket
 
-**Última actualización:** 23 de abril de 2026  
+**Última actualización:** 17 de julio de 2026  
 **Desarrollador:** ChillWorks-apps
 **Contacto:** development@chillworks-apps.com
 
@@ -73,11 +73,22 @@ Si usas la función de categorías compartidas:
 
 Si usas las opciones de "Reportar un problema" o "Comparte tu experiencia" en Ajustes, se abre un formulario externo de Google Forms. El envío de ese formulario es completamente voluntario y está sujeto a la política de privacidad de Google.
 
+### 2.8 Conexión bancaria — Open Banking (Enable Banking)
+
+Si usas la función "Conectar banco" para vincular una cuenta bancaria real:
+
+- La conexión se realiza mediante **Enable Banking**, un proveedor de servicios de información de cuentas (AISP) regulado bajo PSD2, a través de un flujo OAuth2 en el que autorizas el acceso directamente en la web de tu banco o de Enable Banking — ChillPocket nunca ve ni almacena tus credenciales bancarias.
+- Tras autorizar la conexión, se almacenan en nuestro backend (Firebase/Google Cloud, servidor gestionado por ChillPocket) los siguientes metadatos de la cuenta: IBAN, nombre del titular, nombre y país del banco, tipo de cuenta, y la fecha de validez del consentimiento otorgado. Estos datos se guardan mientras la conexión permanezca activa.
+- Los movimientos bancarios (importe, fecha, concepto, comercio) se obtienen a través de la API de Enable Banking y se transfieren a tu dispositivo para guardarse en tu base de datos local, igual que el resto de tus transacciones. No conservamos un histórico de tus movimientos bancarios en nuestro servidor.
+- Puedes desconectar un banco en cualquier momento desde Ajustes → Conexión Bancaria. Al hacerlo, se elimina permanentemente el registro de esa conexión (incluido el IBAN y demás metadatos) de nuestro servidor, y se revoca el acceso en Enable Banking.
+- El consentimiento de acceso otorgado al banco tiene una validez limitada (normalmente entre 90 y 180 días según el banco) tras la cual deberás volver a autorizar el acceso.
+- Consulta la [Política de Privacidad de Enable Banking](https://enablebanking.com/privacy) para más información sobre cómo procesan los datos durante la autorización.
+
 ---
 
 ## 3. Datos que NO recopilamos
 
-- ❌ No tenemos servidores propios que almacenen tus datos.
+- ⚠️ Usamos un servidor propio (Firebase/Google Cloud) exclusivamente para gestionar la conexión con tu banco mediante Open Banking (ver sección 2.8). El resto de tus datos financieros (transacciones, categorías, etc.) permanece solo en tu dispositivo.
 - ❌ No usamos analytics ni herramientas de telemetría (sin Firebase Analytics, sin Crashlytics, sin Sentry).
 - ❌ No recopilamos datos de localización (GPS).
 - ❌ No accedemos a tus contactos.
@@ -91,6 +102,8 @@ Si usas las opciones de "Reportar un problema" o "Comparte tu experiencia" en Aj
 Todos tus datos financieros residen en la base de datos SQLite del almacenamiento interno de tu dispositivo. Cuando desinstalas la app, estos datos se eliminan permanentemente.
 
 No existe ningún servidor de backup gestionado por ChillPocket.
+
+La única excepción es la función de Conexión Bancaria (Open Banking): los metadatos de la cuenta conectada (IBAN, titular, banco) se almacenan en nuestro backend en Firebase (Google Cloud, región europe-west1) mientras la conexión esté activa, y se eliminan permanentemente al desconectar el banco.
 
 ---
 
