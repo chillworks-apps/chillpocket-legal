@@ -1,97 +1,116 @@
 # Política de Privacidad — ChillPocket
 
-**Última actualización:** 17 de julio de 2026  
-**Desarrollador:** ChillWorks-apps
+**Última actualización:** 21 de septiembre de 2026  
+**Desarrollador:** ChillWorks-apps  
 **Contacto:** development@chillworks-apps.com
 
 ---
 
 ## 1. Quién somos
 
-ChillPocket es una aplicación de control financiero personal desarrollada por ChillWorks-apps. Esta política explica qué datos se recogen, cómo se usan y qué derechos tienes.
+ChillPocket es una aplicación de control financiero personal desarrollada por ChillWorks-apps. Esta política explica qué datos se recogen, cómo se usan, dónde se guardan y qué derechos tienes.
+
+En resumen: **tus transacciones viven en tu móvil**. Solo salen de él si activas funciones concretas (categorías compartidas, inteligencia artificial, conexión bancaria), y en cada caso te explicamos qué se envía y a quién.
 
 ---
 
 ## 2. Datos que recopilamos y por qué
 
-### 2.1 Datos que tú introduces (almacenados únicamente en tu dispositivo)
+### 2.1 Datos que tú introduces (almacenados en tu dispositivo)
 
 | Dato | Propósito |
 |---|---|
-| Transacciones (importe, fecha, nota, comercio) | Funcionalidad principal de la app |
+| Transacciones (importe, fecha, nota, comercio, categoría) | Funcionalidad principal de la app |
 | Categorías de gasto e ingreso | Organización de transacciones |
-| Saldo inicial y preferencias (moneda, separadores) | Personalización de la app |
+| Saldo inicial y preferencias (moneda, formato, idioma, tema) | Personalización de la app |
 | Perfil laboral (tipo de empleo) | Módulo "Mi Trabajo" |
 | Controles de gasto y objetivos de ahorro | Funcionalidad de presupuesto |
 
-**Todos estos datos se guardan exclusivamente en la base de datos SQLite local de tu dispositivo. No se envían a ningún servidor ni se comparten con terceros.**
+Todos estos datos se guardan en la base de datos local de tu dispositivo. **No se envían a servidores de ChillPocket ni se comparten con terceros**, salvo en las funciones opcionales descritas en las secciones 2.2 a 2.8.
 
-### 2.2 Notificaciones bancarias (opcional, desactivado por defecto)
+ChillPocket está **excluida de la copia de seguridad automática de Android en la nube** (Google Drive): tus datos no se suben a tu cuenta de Google. Si cambias de móvil, usa la exportación e importación de datos (Ajustes → Descarga) para llevarlos contigo.
 
-Si activas la función *"Registrar compras automáticamente"* en Ajustes, la app solicita el permiso de Acceso a Notificaciones de Android para leer las notificaciones push de tus apps bancarias.
+### 2.2 Identificador anónimo (Firebase)
 
-- Solo se leen notificaciones de entidades bancarias conocidas (BBVA, CaixaBank, Santander, Sabadell, Bankinter, ING, Openbank, EVO Banco).
-- El texto leído se procesa localmente para extraer importe, comercio y fecha.
-- Si el procesamiento local falla, el texto puede enviarse a la API de Gemini (Google) para su análisis (ver sección 2.3).
-- Los textos de notificaciones se almacenan temporalmente en la base de datos local para auditoría y reprocesamiento. No se envían a servidores propios.
-- Puedes desactivar esta función en cualquier momento desde Ajustes → Conexión Bancaria.
+Al abrir la app por primera vez se crea una **cuenta anónima** en Firebase Authentication (Google). Es un identificador aleatorio sin nombre, correo ni teléfono. Sirve para que las funciones que necesitan un servidor (categorías compartidas, conexión bancaria, borrado de cuenta) sepan qué datos son tuyos. Puedes eliminarlo en cualquier momento con "Borrar cuenta" (ver sección 6).
 
-### 2.3 Inteligencia Artificial — Gemini (opcional, desactivado por defecto)
+### 2.3 Lectura de notificaciones bancarias (opcional, desactivado por defecto)
 
-Si configuras una clave de API propia de Google AI Studio (función BYOK — *Bring Your Own Key*):
+Si activas *"Lectura de notificaciones"* en Ajustes → Detección bancaria, la app te explica primero qué va a hacer y, si aceptas, te lleva al ajuste de Android para concederle **acceso a las notificaciones**. Con ese acceso:
 
-- Las imágenes de tickets/recibos, el audio de voz y, en caso de fallo del parser local, el texto de notificaciones bancarias se envían a la API de Gemini Flash de Google para su análisis.
-- **Tu clave de API se almacena cifrada en el Keystore seguro del dispositivo** (`flutter_secure_storage`) y nunca se transmite a servidores de ChillPocket.
-- Los datos enviados a Gemini están sujetos a la [Política de Privacidad de Google](https://policies.google.com/privacy) y a las [condiciones de uso de la API de Gemini](https://ai.google.dev/gemini-api/terms).
-- Si no configuras ninguna clave de API, esta funcionalidad está completamente desactivada.
+- Lee las notificaciones de las **apps bancarias que tú elijas** de la lista incluida en la app (bancos de España, Portugal, Reino Unido, Alemania, Francia, Italia, México y otros países).
+- Si no eliges ningún banco, la app analiza las notificaciones que **parezcan un pago** (contienen un importe y una palabra como "compra", "cargo" o "transferencia", o el nombre de un sistema de pago como Bizum) y **descarta el resto sin guardarlo**.
+- El texto se procesa **en tu móvil** para extraer importe, comercio y fecha.
+- Si has configurado tu propia clave de IA (sección 2.5) y el análisis local no consigue interpretarlo, el texto puede enviarse a Gemini (Google).
+- Los textos que sí corresponden a un pago se guardan temporalmente en la base de datos local para que puedas revisarlos y reprocesarlos. **Nunca se envían a servidores de ChillPocket.**
+- Puedes desactivarlo cuando quieras desde ese mismo ajuste o retirando el permiso en los ajustes de Android.
 
-### 2.4 Publicidad — Google AdMob (solo usuarios gratuitos)
+### 2.4 Texto compartido desde otras apps (opcional, iniciado por ti)
 
-Si no tienes una suscripción activa de ChillPocket Pro, la app muestra un banner publicitario mediante Google AdMob.
+Si desde otra app (por ejemplo, la de tu banco) usas "Compartir" y eliges ChillPocket, el texto compartido se analiza en tu móvil para crear una transacción. Igual que en 2.3, solo si tienes tu clave de IA configurada puede enviarse a Gemini cuando el análisis local no basta.
 
-- AdMob puede recopilar el **identificador publicitario del dispositivo (GAID)** para mostrar anuncios relevantes.
-- Esta recopilación está sujeta a la [Política de Privacidad de Google](https://policies.google.com/privacy).
-- Los usuarios con suscripción Pro no ven publicidad y AdMob no recopila datos en su caso.
+### 2.5 Inteligencia artificial — Gemini (opcional, desactivado por defecto)
 
-### 2.5 Suscripciones — RevenueCat
+Si configuras una clave de API propia de Google AI Studio (*Bring Your Own Key*):
 
-La gestión de compras y suscripciones In-App se realiza a través de RevenueCat.
+- Las **imágenes de tickets o recibos**, el **audio** de voz y, cuando el análisis local falla, el **texto de notificaciones o compartido** se envían a la API de Gemini de Google para su análisis. Las imágenes y audios se eliminan de tu móvil inmediatamente después.
+- Tu clave se almacena **cifrada en el almacenamiento seguro del dispositivo** y nunca se transmite a servidores de ChillPocket.
+- Los datos enviados a Gemini están sujetos a la [Política de Privacidad de Google](https://policies.google.com/privacy) y a las [condiciones de la API de Gemini](https://ai.google.dev/gemini-api/terms). Eres responsable del uso y coste de tu propia clave.
+- Si no configuras ninguna clave, esta funcionalidad está completamente desactivada y ningún dato se envía a Gemini.
 
-- RevenueCat puede recopilar datos de compra (ID de transacción, estado de suscripción) para verificar el estado de tu suscripción.
-- No tiene acceso a tus datos financieros ni de transacciones.
-- Consulta la [Política de Privacidad de RevenueCat](https://www.revenuecat.com/privacy).
+### 2.6 Categorías y objetivos compartidos (opcional)
 
-### 2.6 Categorías compartidas — MQTT P2P (opcional)
+Si creas o te unes a una **categoría compartida** o a un **objetivo de ahorro compartido**, esa información se guarda en un servidor gestionado por ChillPocket (**Firebase / Google Cloud, región europe-west1**) para sincronizarla entre los miembros del grupo:
 
-Si usas la función de categorías compartidas:
+- De la categoría u objetivo: nombre, icono, tipo, meta y la lista de miembros (identificador anónimo + el **nombre visible** que tú elijas).
+- De cada movimiento que publiques en ella: importe, fecha, nota, tu identificador anónimo y tu nombre visible.
+- Solo pueden verlo los miembros del grupo, es decir, quienes tengan el **código de invitación**. Compártelo únicamente con personas de confianza.
+- Tus transacciones **no compartidas** nunca se suben.
+- Puedes salir de una categoría u objetivo cuando quieras. Los movimientos que ya compartiste con el grupo pueden seguir siendo visibles para sus miembros mientras el grupo exista. Con "Borrar cuenta" (sección 6) se eliminan tus vínculos con todos los grupos.
 
-- Las transacciones de esa categoría se publican cifradas (AES-256-CBC) en un broker MQTT público (HiveMQ).
-- Solo los dispositivos con la clave de cifrado correcta (generada localmente en tu dispositivo) pueden descifrar los mensajes.
-- Los mensajes son efímeros (TTL de 7 días) y no contienen datos de identificación personal más allá del nombre de display que tú elijas.
+### 2.7 Avisos de la app
 
-### 2.7 Reportar problemas / Compartir experiencia (opcional, iniciado por ti)
-
-Si usas las opciones de "Reportar un problema" o "Comparte tu experiencia" en Ajustes, se abre un formulario externo de Google Forms. El envío de ese formulario es completamente voluntario y está sujeto a la política de privacidad de Google.
+La app descarga ocasionalmente **avisos y novedades** publicados por ChillWorks-apps desde nuestro servidor (Firebase). Es una descarga de solo lectura: no se envía ningún dato tuyo.
 
 ### 2.8 Conexión bancaria — Open Banking (Enable Banking)
 
-Si usas la función "Conectar banco" para vincular una cuenta bancaria real:
+*Esta función se está desplegando de forma progresiva y puede no estar disponible en tu versión de la app.* Cuando la uses para vincular una cuenta bancaria real:
 
-- La conexión se realiza mediante **Enable Banking**, un proveedor de servicios de información de cuentas (AISP) regulado bajo PSD2, a través de un flujo OAuth2 en el que autorizas el acceso directamente en la web de tu banco o de Enable Banking — ChillPocket nunca ve ni almacena tus credenciales bancarias.
-- Tras autorizar la conexión, se almacenan en nuestro backend (Firebase/Google Cloud, servidor gestionado por ChillPocket) los siguientes metadatos de la cuenta: IBAN, nombre del titular, nombre y país del banco, tipo de cuenta, y la fecha de validez del consentimiento otorgado. Estos datos se guardan mientras la conexión permanezca activa.
-- Los movimientos bancarios (importe, fecha, concepto, comercio) se obtienen a través de la API de Enable Banking y se transfieren a tu dispositivo para guardarse en tu base de datos local, igual que el resto de tus transacciones. No conservamos un histórico de tus movimientos bancarios en nuestro servidor.
-- Puedes desconectar un banco en cualquier momento desde Ajustes → Conexión Bancaria. Al hacerlo, se elimina permanentemente el registro de esa conexión (incluido el IBAN y demás metadatos) de nuestro servidor, y se revoca el acceso en Enable Banking.
-- El consentimiento de acceso otorgado al banco tiene una validez limitada (normalmente entre 90 y 180 días según el banco) tras la cual deberás volver a autorizar el acceso.
-- Consulta la [Política de Privacidad de Enable Banking](https://enablebanking.com/privacy) para más información sobre cómo procesan los datos durante la autorización.
+- La conexión se realiza mediante **Enable Banking**, un proveedor de servicios de información de cuentas (AISP) regulado bajo PSD2, con un flujo OAuth2 en el que autorizas el acceso directamente en la web de tu banco o de Enable Banking. **ChillPocket nunca ve ni almacena tus credenciales bancarias.**
+- Tras autorizar la conexión, se guardan en nuestro servidor (Firebase / Google Cloud, región europe-west1) estos metadatos: IBAN, nombre del titular, nombre y país del banco, tipo de cuenta y fecha de validez del consentimiento. Se conservan mientras la conexión esté activa.
+- Los movimientos (importe, fecha, concepto, comercio) se obtienen a través de Enable Banking y se transfieren a tu dispositivo para guardarse en tu base de datos local. **No conservamos un histórico de tus movimientos en el servidor.**
+- Puedes desconectar un banco cuando quieras desde Ajustes → Detección bancaria. Al hacerlo se elimina permanentemente el registro de esa conexión (IBAN incluido) de nuestro servidor y se revoca el acceso en Enable Banking.
+- El consentimiento tiene validez limitada (normalmente entre 90 y 180 días según el banco); después deberás renovarlo.
+- Consulta la [Política de Privacidad de Enable Banking](https://enablebanking.com/privacy).
+
+### 2.9 Publicidad — Google AdMob (solo usuarios gratuitos)
+
+Si no tienes una suscripción activa de ChillPocket Pro, la app muestra un banner publicitario mediante Google AdMob.
+
+- AdMob puede recopilar el **identificador publicitario del dispositivo** y datos técnicos para mostrar anuncios, personalizados o no según la configuración de tu dispositivo y la normativa de tu región.
+- Esta recopilación está sujeta a la [Política de Privacidad de Google](https://policies.google.com/privacy). Puedes restablecer o desactivar la personalización del identificador publicitario en los ajustes de Android.
+- Los usuarios Pro no ven publicidad.
+
+### 2.10 Suscripciones — RevenueCat
+
+La gestión de la suscripción ChillPocket Pro se realiza a través de Google Play y RevenueCat.
+
+- RevenueCat recibe un identificador anónimo de la app y datos de compra (identificador de transacción, estado de la suscripción) para verificar tu plan.
+- No tiene acceso a tus transacciones ni datos financieros.
+- Consulta la [Política de Privacidad de RevenueCat](https://www.revenuecat.com/privacy).
+
+### 2.11 Reportar un problema / Compartir experiencia (opcional, iniciado por ti)
+
+Estas opciones de Ajustes abren un formulario externo de Google Forms. Enviarlo es voluntario y está sujeto a la política de privacidad de Google.
 
 ---
 
 ## 3. Datos que NO recopilamos
 
-- ⚠️ Usamos un servidor propio (Firebase/Google Cloud) exclusivamente para gestionar la conexión con tu banco mediante Open Banking (ver sección 2.8). El resto de tus datos financieros (transacciones, categorías, etc.) permanece solo en tu dispositivo.
-- ❌ No usamos analytics ni herramientas de telemetría (sin Firebase Analytics, sin Crashlytics, sin Sentry).
-- ❌ No recopilamos datos de localización (GPS).
+- ❌ No usamos analytics ni herramientas de telemetría (sin Firebase Analytics, Crashlytics ni similares).
+- ❌ No recopilamos datos de localización.
 - ❌ No accedemos a tus contactos.
+- ❌ No pedimos tu nombre real, correo ni teléfono para usar la app.
 - ❌ No vendemos ni cedemos datos a terceros.
 - ❌ La app no está dirigida a menores de 13 años.
 
@@ -99,40 +118,43 @@ Si usas la función "Conectar banco" para vincular una cuenta bancaria real:
 
 ## 4. Dónde se almacenan tus datos
 
-Todos tus datos financieros residen en la base de datos SQLite del almacenamiento interno de tu dispositivo. Cuando desinstalas la app, estos datos se eliminan permanentemente.
+| Dato | Dónde |
+|---|---|
+| Transacciones, categorías, presupuestos, objetivos, preferencias | Tu dispositivo (base de datos local) |
+| Clave de IA (si la configuras) | Tu dispositivo (almacenamiento cifrado) |
+| Categorías y objetivos compartidos, metadatos de conexión bancaria, identificador anónimo | Firebase / Google Cloud, región europe-west1 (UE) |
+| Datos enviados a Gemini, AdMob, RevenueCat, Enable Banking | Servidores de cada proveedor, según sus políticas |
 
-No existe ningún servidor de backup gestionado por ChillPocket.
-
-La única excepción es la función de Conexión Bancaria (Open Banking): los metadatos de la cuenta conectada (IBAN, titular, banco) se almacenan en nuestro backend en Firebase (Google Cloud, región europe-west1) mientras la conexión esté activa, y se eliminan permanentemente al desconectar el banco.
+No existe ningún servidor de copia de seguridad de tus transacciones gestionado por ChillPocket, y la app no participa en la copia automática de Android en la nube. Cuando desinstalas la app, los datos locales se eliminan.
 
 ---
 
 ## 5. Seguridad
 
-- La clave de API de Gemini se almacena cifrada en el Keystore del sistema operativo.
-- Las comunicaciones MQTT usan cifrado AES-256-CBC extremo a extremo.
-- Las suscripciones se verifican a través de canales seguros de Google Play y RevenueCat.
+- La clave de IA se almacena cifrada mediante el almacenamiento seguro del sistema operativo.
+- Las comunicaciones con Firebase, Gemini, RevenueCat y Enable Banking van cifradas (HTTPS).
+- El acceso a los datos compartidos en Firebase está limitado por reglas de seguridad a los miembros de cada grupo.
+- Las suscripciones se verifican a través de los canales seguros de Google Play y RevenueCat.
 
 ---
 
 ## 6. Tus derechos
 
-Dado que todos tus datos se almacenan localmente en tu dispositivo, tienes control total sobre ellos:
+- **Acceso y portabilidad:** exporta todos tus datos en XLSX, CSV o PDF desde Ajustes → Descarga.
+- **Rectificación:** edita o elimina cualquier transacción, categoría u objetivo desde la propia app.
+- **Supresión:** en Ajustes → Zona de peligro → **Borrar cuenta** se eliminan de forma irreversible tu base de datos local, tus preferencias, tus claves de IA, tus conexiones bancarias, tu participación en categorías y objetivos compartidos y tu cuenta anónima en nuestro servidor.
+- **Retirar permisos:** puedes desactivar la lectura de notificaciones, el micrófono o la cámara en cualquier momento desde los ajustes de Android.
 
-- **Acceso:** puedes exportar tus datos en formato CSV o PDF desde Ajustes → Descarga.
-- **Eliminación:** puedes eliminar transacciones individualmente o desinstalar la app para borrar todos los datos.
-- **Portabilidad:** la exportación CSV incluye todas tus transacciones.
-
-Para cualquier consulta relacionada con la privacidad, contacta con: **development@chillworks-apps.com**
+Para cualquier consulta relacionada con la privacidad, escribe a **development@chillworks-apps.com**. Si consideras que no hemos atendido tus derechos, puedes reclamar ante la Agencia Española de Protección de Datos (www.aepd.es).
 
 ---
 
 ## 7. Cambios en esta política
 
-Si realizamos cambios materiales en esta política, actualizaremos la fecha al inicio del documento. Te recomendamos revisarla periódicamente.
+Si realizamos cambios materiales, actualizaremos la fecha al inicio del documento y, cuando sea relevante, lo indicaremos en la app. Te recomendamos revisarla periódicamente.
 
 ---
 
 ## 8. Legislación aplicable
 
-Esta política se rige por la normativa española y europea de protección de datos (RGPD — Reglamento (UE) 2016/679).
+Esta política se rige por la normativa española y europea de protección de datos (RGPD — Reglamento (UE) 2016/679 y LOPDGDD).
