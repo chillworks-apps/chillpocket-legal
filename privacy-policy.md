@@ -1,6 +1,6 @@
 # Política de Privacidad — ChillPocket
 
-**Última actualización:** 21 de septiembre de 2026  
+**Última actualización:** 1 de octubre de 2026  
 **Desarrollador:** ChillWorks-apps  
 **Contacto:** development@chillworks-apps.com
 
@@ -68,9 +68,9 @@ Si creas o te unes a una **categoría compartida** o a un **objetivo de ahorro c
 - Tus transacciones **no compartidas** nunca se suben.
 - Puedes salir de una categoría u objetivo cuando quieras. Los movimientos que ya compartiste con el grupo pueden seguir siendo visibles para sus miembros mientras el grupo exista. Con "Borrar cuenta" (sección 6) se eliminan tus vínculos con todos los grupos.
 
-### 2.7 Avisos de la app
+### 2.7 Avisos y configuración de la app
 
-La app descarga ocasionalmente **avisos y novedades** publicados por ChillWorks-apps desde nuestro servidor (Firebase). Es una descarga de solo lectura: no se envía ningún dato tuyo.
+La app descarga ocasionalmente **avisos y novedades** publicados por ChillWorks-apps y **datos de configuración de la app** (por ejemplo, la duración de la prueba gratuita) desde nuestro servidor (Firebase). Es una descarga de solo lectura: no se envía ningún dato tuyo.
 
 ### 2.8 Conexión bancaria — Open Banking (Enable Banking)
 
@@ -87,9 +87,11 @@ La app descarga ocasionalmente **avisos y novedades** publicados por ChillWorks-
 
 Si no tienes una suscripción activa de ChillPocket Pro, la app muestra un banner publicitario mediante Google AdMob.
 
-- AdMob puede recopilar el **identificador publicitario del dispositivo** y datos técnicos para mostrar anuncios, personalizados o no según la configuración de tu dispositivo y la normativa de tu región.
+- **Primero tu consentimiento.** En el Espacio Económico Europeo, el Reino Unido y Suiza, antes de cargar ningún anuncio la app te muestra el formulario de consentimiento de Google para que decidas si aceptas anuncios personalizados. El servicio de anuncios no se inicia hasta que ese formulario termina, y la medición de AdMob no empieza antes. Si no das tu consentimiento, los anuncios que veas no serán personalizados.
+- Puedes **revisar o cambiar tu decisión** cuando quieras en Ajustes → *Opciones de privacidad de anuncios* (al final de Ajustes; aparece cuando la normativa de tu región lo exige).
+- AdMob puede recopilar el **identificador publicitario del dispositivo** y datos técnicos para mostrar anuncios, personalizados o no según tu decisión, la configuración de tu dispositivo y la normativa de tu región.
 - Esta recopilación está sujeta a la [Política de Privacidad de Google](https://policies.google.com/privacy). Puedes restablecer o desactivar la personalización del identificador publicitario en los ajustes de Android.
-- Los usuarios Pro no ven publicidad.
+- Los usuarios Pro, y quien está en la prueba gratuita, no ven publicidad ni reciben el formulario de consentimiento.
 
 ### 2.10 Suscripciones — RevenueCat
 
@@ -122,6 +124,7 @@ Estas opciones de Ajustes abren un formulario externo de Google Forms. Enviarlo 
 |---|---|
 | Transacciones, categorías, presupuestos, objetivos, preferencias | Tu dispositivo (base de datos local) |
 | Clave de IA (si la configuras) | Tu dispositivo (almacenamiento cifrado) |
+| Tu decisión sobre el consentimiento de anuncios | Tu dispositivo |
 | Categorías y objetivos compartidos, metadatos de conexión bancaria, identificador anónimo | Firebase / Google Cloud, región europe-west1 (UE) |
 | Datos enviados a Gemini, AdMob, RevenueCat, Enable Banking | Servidores de cada proveedor, según sus políticas |
 
@@ -133,6 +136,7 @@ No existe ningún servidor de copia de seguridad de tus transacciones gestionado
 
 - La clave de IA se almacena cifrada mediante el almacenamiento seguro del sistema operativo.
 - Las comunicaciones con Firebase, Gemini, RevenueCat y Enable Banking van cifradas (HTTPS).
+- Las peticiones a nuestro servidor (Firebase) se verifican con **Firebase App Check**, que usa la API Play Integrity de Google para comprobar que proceden de la app original. Esta verificación no incluye tus datos financieros.
 - El acceso a los datos compartidos en Firebase está limitado por reglas de seguridad a los miembros de cada grupo.
 - Las suscripciones se verifican a través de los canales seguros de Google Play y RevenueCat.
 
@@ -143,9 +147,10 @@ No existe ningún servidor de copia de seguridad de tus transacciones gestionado
 - **Acceso y portabilidad:** exporta todos tus datos en XLSX, CSV o PDF desde Ajustes → Descarga.
 - **Rectificación:** edita o elimina cualquier transacción, categoría u objetivo desde la propia app.
 - **Supresión:** en Ajustes → Zona de peligro → **Borrar cuenta** se eliminan de forma irreversible tu base de datos local, tus preferencias, tus claves de IA, tus conexiones bancarias, tu participación en categorías y objetivos compartidos y tu cuenta anónima en nuestro servidor.
-- **Retirar permisos:** puedes desactivar la lectura de notificaciones, el micrófono o la cámara en cualquier momento desde los ajustes de Android.
+- **Retirar permisos:** puedes desactivar la lectura de notificaciones, el permiso para mostrar notificaciones, el micrófono o la cámara en cualquier momento desde los ajustes de Android.
+- **Publicidad:** puedes cambiar tu decisión sobre los anuncios personalizados en Ajustes → *Opciones de privacidad de anuncios* (sección 2.9).
 
-Para cualquier consulta relacionada con la privacidad, escribe a **development@chillworks-apps.com**. Si consideras que no hemos atendido tus derechos, puedes reclamar ante la Agencia Española de Protección de Datos (www.aepd.es).
+Para cualquier consulta relacionada con la privacidad, escribe a **development@chillworks-apps.com**. Si consideras que no hemos atendido tus derechos, puedes reclamar ante la Agencia Española de Protección de Datos ([www.aepd.es](https://www.aepd.es)).
 
 ---
 
