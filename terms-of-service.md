@@ -1,6 +1,6 @@
 # Términos de Servicio — ChillPocket
 
-**Última actualización:** 21 de septiembre de 2026  
+**Última actualización:** 1 de octubre de 2026  
 **Desarrollador:** ChillWorks-apps  
 **Contacto:** development@chillworks-apps.com
 
@@ -21,7 +21,7 @@ La App no está dirigida a menores de 13 años. Si eres menor de edad según la 
 ## 4. Planes, prueba y suscripción
 
 - ChillPocket ofrece un **plan gratuito** con publicidad y un plan de pago, **ChillPocket Pro**, con funciones adicionales. El precio se muestra en la App y en Google Play en tu moneda local y puede variar según el país.
-- Al empezar a usar la App puedes disfrutar de una **prueba de 7 días con acceso completo**, sin introducir ningún método de pago. Es de un solo uso por dispositivo. Al terminar, la App pasa al plan gratuito salvo que contrates Pro; no se realiza ningún cobro automático.
+- Al empezar a usar la App puedes disfrutar, mientras esté disponible, de una **prueba gratuita con acceso completo** (actualmente de 7 días; la App te indica su duración), sin introducir ningún método de pago. Es de un solo uso por dispositivo. Al terminar, la App pasa al plan gratuito salvo que contrates Pro; no se realiza ningún cobro automático.
 - La suscripción Pro se gestiona a través de Google Play (y App Store cuando esté disponible) y se procesa con RevenueCat. Se renueva automáticamente hasta que la canceles desde la tienda. Precios, facturación, cancelaciones y reembolsos se rigen por las políticas de la tienda; no ofrecemos reembolsos directos.
 - Si tu suscripción termina, conservas todos tus datos, pero las funciones Pro quedan desactivadas hasta que la renueves.
 - Algunas funciones se anuncian como "Muy pronto": están en desarrollo y no forman parte de lo que contratas al suscribirte.
