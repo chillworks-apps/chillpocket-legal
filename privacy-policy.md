@@ -1,6 +1,6 @@
 # Política de Privacidad — ChillPocket
 
-**Última actualización:** 19 de octubre de 2026  
+**Última actualización:** 24 de octubre de 2026  
 **Desarrollador:** ChillWorks-apps  
 **Contacto:** development@chillworks-apps.com
 
@@ -29,7 +29,7 @@ En resumen: **tus transacciones viven en tu móvil**. Solo salen de él si activ
 
 Todos estos datos se guardan en la base de datos local de tu dispositivo. **No se envían a servidores de ChillPocket ni se comparten con terceros**, salvo en las funciones opcionales descritas en las secciones 2.2 a 2.12. Los resúmenes y las alertas se calculan en tu móvil, también cuando la app está cerrada (una tarea periódica del sistema), sin enviar nada fuera.
 
-ChillPocket está **excluida de la copia de seguridad automática de Android en la nube** (Google Drive): tus datos no se suben a tu cuenta de Google. Si cambias de móvil, usa la exportación e importación de datos (Ajustes → Descarga) para llevarlos contigo.
+ChillPocket está **excluida de la copia de seguridad automática de Android en la nube** (Google Drive): tus datos no se suben a tu cuenta de Google. En iPhone, la app marca su base de datos, sus archivos y sus preferencias como **excluidos de la copia de iCloud y de la del ordenador**, y guarda tu clave de IA de forma que no se transfiera a otro dispositivo. Si cambias de móvil, usa la exportación e importación de datos (Ajustes → Descarga) para llevarlos contigo.
 
 ### 2.2 Identificador anónimo (Firebase)
 
@@ -37,9 +37,9 @@ Al abrir la app por primera vez se crea una **cuenta anónima** en Firebase Auth
 
 Si reinstalas la app o borras sus datos, se crea un identificador nuevo y el anterior queda huérfano. Para no conservar datos que nadie puede reclamar, **las cuentas anónimas sin actividad durante 180 días se eliminan automáticamente** de nuestro servidor, junto con sus datos: se cierran sus conexiones bancarias, se retira a esa cuenta de sus categorías y objetivos compartidos y se borra su registro (sección 4).
 
-### 2.3 Lectura de notificaciones bancarias (opcional, desactivado por defecto; solo Android)
+### 2.3 Avisos de tu banco: lectura de notificaciones (Android) y captura por Atajos (iPhone). Opcional, desactivado por defecto
 
-Si activas *"Habilitar lectura"* en Ajustes → Detección bancaria, la app te explica primero qué va a hacer y, si aceptas, te lleva al ajuste de Android para concederle **acceso a las notificaciones**. Con ese acceso:
+**En Android.** Si activas *"Habilitar lectura"* en Ajustes → Detección bancaria, la app te explica primero qué va a hacer y, si aceptas, te lleva al ajuste de Android para concederle **acceso a las notificaciones**. Con ese acceso:
 
 - Lee las notificaciones de las **apps bancarias que tú elijas** en "Mis bancos", de un catálogo que cubre bancos y neobancos de 41 países de Europa y América.
 - Si no eliges ningún banco, la app analiza las notificaciones que **parezcan un pago** (contienen un importe y una palabra como "compra", "cargo" o "transferencia" en alguno de los idiomas que reconoce, o el nombre de un sistema de pago como Bizum) y **descarta el resto sin guardarlo**.
@@ -50,23 +50,29 @@ Si activas *"Habilitar lectura"* en Ajustes → Detección bancaria, la app te e
 - Un aviso en una moneda distinta de la tuya se queda en espera hasta que escribas el importe convertido; no se calcula ningún tipo de cambio ni se consulta ningún servicio externo.
 - Puedes desactivarlo cuando quieras desde ese mismo ajuste o retirando el permiso en los ajustes de Android. Si Android retira el acceso, la app lo refleja al volver a abrirla.
 
-Esta función no existe en iOS, porque el sistema no permite a las apps leer notificaciones de otras apps.
+**En iPhone.** iOS no permite a las apps leer las notificaciones de otras apps, y **ChillPocket no lee ninguna**. En su lugar, si activas la captura en Ajustes → Detección bancaria, la app te explica el funcionamiento y te guía para que **tú crees una automatización en la app Atajos de Apple**: cuando llega un aviso de la app de tu banco (iOS 27 o posterior) o haces un pago con Apple Pay (iOS 17 a 26), tu automatización ejecuta la acción «Registrar aviso del banco» de ChillPocket.
+
+- Esa acción recibe únicamente lo que tu automatización le pasa: el **texto del aviso** (título y cuerpo) o, en el caso de Apple Pay, el **importe, el comercio y la tarjeta** del pago, y el nombre del banco si lo indicas. No abre la app ni envía nada fuera del iPhone.
+- Lo guarda en un **espacio privado de tu iPhone compartido entre la acción y la app** hasta que abres ChillPocket (como máximo 200 avisos en espera). Entonces se procesa igual que en Android: en tu móvil, con el mismo análisis local, los mismos patrones aprendidos y la misma purga a los 90 días; solo si tienes tu clave de IA (sección 2.5) y el análisis local no basta, el texto puede enviarse a Gemini.
+- La automatización es tuya: la ves, la editas y la borras en Atajos. ChillPocket no puede crearla, activarla ni usarla para leer otros avisos. Los avisos en espera se descartan al apagar la captura o al borrar la cuenta.
+- El funcionamiento de Atajos (cuándo se ejecuta, qué datos entrega) lo controla Apple y puede cambiar con las versiones de iOS; en iOS 17 a 26 solo se capturan los pagos con Apple Pay.
+- Si tu iPhone no admite estas automatizaciones, puedes compartir el texto del aviso a mano (sección 2.4).
 
 ### 2.4 Texto e imágenes compartidos desde otras apps (opcional, iniciado por ti)
 
 Si desde otra app usas "Compartir" y eliges ChillPocket:
 
 - Un **texto** (por ejemplo, el aviso de tu banco) se analiza en tu móvil para crear una transacción, igual que en 2.3. Solo si tienes tu clave de IA configurada puede enviarse a Gemini cuando el análisis local no basta.
-- Una **imagen** (por ejemplo, la foto de un ticket desde la galería; Android, hasta 10 MB en JPEG, PNG, WEBP o HEIC) sigue el mismo camino que una foto hecha desde la app: se copia temporalmente, se envía a Gemini con tu clave (sección 2.5) y la copia temporal se elimina siempre, también si cancelas. Sin clave de IA, la app no puede leer la imagen.
+- Una **imagen** (por ejemplo, la foto de un ticket desde la galería; solo Android por ahora, hasta 10 MB en JPEG, PNG, WEBP o HEIC) sigue el mismo camino que una foto hecha desde la app: se copia temporalmente, se envía a Gemini con tu clave (sección 2.5) y la copia temporal se elimina siempre, también si cancelas. Sin clave de IA, la app no puede leer la imagen.
 
-Cada texto o imagen compartido se consume una sola vez: no queda guardado en la app.
+Cada texto o imagen compartido se consume una sola vez: no queda guardado en la app. En iPhone, el texto compartido espera en el mismo espacio privado del iPhone descrito en la sección 2.3 hasta que abres ChillPocket.
 
 ### 2.5 Inteligencia artificial — Gemini (opcional, desactivado por defecto)
 
 Si configuras una clave de API propia de Google AI Studio (*Bring Your Own Key*):
 
 - Lo que analiza la IA (**fotos de tickets o recibos**, lo que **dictas** y, cuando el análisis local falla, los **textos de los avisos y movimientos del banco**) va **de tu móvil a Google con tu clave, sin pasar por nuestros servidores**. Las imágenes y audios se eliminan de tu móvil inmediatamente después, y las fotos de recibos que queden en la caché se limpian de forma periódica.
-- **Entrada por voz:** el dictado usa el servicio de reconocimiento de voz de tu móvil (en Android, el de Google) para convertir tu voz en texto, según la configuración de tu dispositivo; a Gemini se envía solo el **texto transcrito**. Únicamente si ese servicio no está disponible, la app graba el audio y lo envía a Gemini para transcribirlo.
+- **Entrada por voz:** el dictado usa el servicio de reconocimiento de voz de tu móvil (en Android, el de Google; en iPhone, el de Apple, que según la configuración de tu dispositivo puede procesar el audio en los servidores de Apple) para convertir tu voz en texto; a Gemini se envía solo el **texto transcrito**. Únicamente si ese servicio no está disponible, la app graba el audio y lo envía a Gemini para transcribirlo.
 - La app puede pedir a Gemini que le enseñe el formato de un aviso bancario y **guarda ese patrón en tu móvil**, para que los avisos siguientes del mismo tipo se interpreten localmente sin volver a enviarlos.
 - Tu clave se almacena **cifrada en el almacenamiento seguro del dispositivo**, viaja a Google en una cabecera de la petición (nunca en la dirección) y nunca se transmite a servidores de ChillPocket.
 - Los datos enviados a Gemini están sujetos a la [Política de Privacidad de Google](https://policies.google.com/privacy) y a las [condiciones de la API de Gemini](https://ai.google.dev/gemini-api/terms). Ten en cuenta que, con una clave del nivel gratuito y fuera del Espacio Económico Europeo, Suiza y el Reino Unido, Google puede usar lo enviado para mejorar sus productos. Eres responsable del uso y coste de tu propia clave.
@@ -108,12 +114,13 @@ Si no tienes una suscripción activa de ChillPocket Pro, la app muestra un banne
 - **Primero tu consentimiento.** En el Espacio Económico Europeo, el Reino Unido y Suiza, antes de cargar ningún anuncio la app te muestra el formulario de consentimiento de Google para que decidas si aceptas anuncios personalizados. El servicio de anuncios no se inicia hasta que ese formulario termina, y la medición de AdMob no empieza antes. Si no das tu consentimiento, los anuncios que veas no serán personalizados.
 - Puedes **revisar o cambiar tu decisión** cuando quieras en Ajustes → *Opciones de privacidad de anuncios* (al final de Ajustes; aparece cuando la normativa de tu región lo exige).
 - AdMob puede recopilar el **identificador publicitario del dispositivo** y datos técnicos para mostrar anuncios, personalizados o no según tu decisión, la configuración de tu dispositivo y la normativa de tu región.
-- Esta recopilación está sujeta a la [Política de Privacidad de Google](https://policies.google.com/privacy). Puedes restablecer o desactivar la personalización del identificador publicitario en los ajustes de Android.
+- **En iPhone, ChillPocket no te pide el permiso de rastreo de Apple** (App Tracking Transparency) y no usa el identificador publicitario del iPhone (IDFA) para personalizar anuncios: los anuncios que ves se eligen por el contexto de la app, no por un perfil tuyo.
+- Esta recopilación está sujeta a la [Política de Privacidad de Google](https://policies.google.com/privacy). Puedes restablecer o desactivar la personalización del identificador publicitario en los ajustes de tu móvil (Android: Google → Anuncios; iPhone: Privacidad y seguridad → Rastreo).
 - Los usuarios Pro, y quien está en la prueba gratuita, no ven publicidad ni reciben el formulario de consentimiento.
 
 ### 2.10 Suscripciones — RevenueCat
 
-La gestión de la suscripción ChillPocket Pro se realiza a través de Google Play (y App Store cuando esté disponible) y RevenueCat.
+La gestión de la suscripción ChillPocket Pro se realiza a través de Google Play (Android) o de la App Store de Apple (iPhone), y RevenueCat. **El pago lo procesa la tienda:** ChillPocket nunca ve tu método de pago.
 
 - RevenueCat recibe un identificador anónimo generado para la app y datos de compra (identificador de transacción, estado de la suscripción) para verificar tu plan. Ese identificador no está ligado a tu nombre ni a tu cuenta anónima de Firebase.
 - No tiene acceso a tus transacciones ni datos financieros.
@@ -126,7 +133,7 @@ Estas opciones de Ajustes abren un formulario externo de Google Forms. Enviarlo 
 
 ### 2.12 Notificaciones que te envía la app
 
-Con tu permiso para mostrar notificaciones, la app puede avisarte de: pagos detectados desde el banco, un control de gasto que se acerca a su límite, el recordatorio semanal, el resumen semanal o mensual listo, aportes de ahorro automático y el fin de la prueba gratuita. Todas se generan **en tu móvil** con tus propios datos; no hay servidor de notificaciones *push* ni se envía nada fuera. Puedes apagarlas en Ajustes ("Notificaciones de ChillPocket") o retirar el permiso en Android.
+Con tu permiso para mostrar notificaciones, la app puede avisarte de: pagos detectados desde el banco, un control de gasto que se acerca a su límite, el recordatorio semanal, el resumen semanal o mensual listo, aportes de ahorro automático y el fin de la prueba gratuita. Todas se generan **en tu móvil** con tus propios datos; no hay servidor de notificaciones *push* ni se envía nada fuera. En iPhone, la app te pide ese permiso la primera vez que llegas a la pantalla principal, no al instalarla. Puedes apagarlas en Ajustes ("Notificaciones de ChillPocket") o retirar el permiso en los ajustes de tu móvil.
 
 ---
 
@@ -137,6 +144,7 @@ Con tu permiso para mostrar notificaciones, la app puede avisarte de: pagos dete
 - ❌ No accedemos a tus contactos.
 - ❌ No pedimos tu nombre real, correo ni teléfono para usar la app.
 - ❌ No vendemos ni cedemos datos a terceros.
+- ❌ No rastreamos tu actividad en otras apps o sitios web. En iPhone no pedimos el permiso de rastreo de Apple.
 - ❌ La app no descarga fuentes ni otros recursos de terceros al arrancar: todo va incluido en la instalación.
 - ❌ La app no está dirigida a menores de 13 años.
 
@@ -148,13 +156,14 @@ Con tu permiso para mostrar notificaciones, la app puede avisarte de: pagos dete
 |---|---|---|
 | Transacciones, categorías, presupuestos, objetivos, resúmenes, preferencias | Tu dispositivo (base de datos local) | Hasta que los borres o desinstales la app |
 | Textos de avisos bancarios guardados para revisar | Tu dispositivo | 90 días |
+| Avisos entregados por tu automatización de Atajos y textos compartidos, a la espera de que abras la app (iPhone) | Tu iPhone (espacio privado compartido con la acción de ChillPocket) | Hasta que la app los procesa (máximo 200 en espera), apagas la captura o borras la cuenta |
 | Clave de IA (si la configuras) | Tu dispositivo (almacenamiento cifrado) | Hasta que la borres |
 | Tu decisión sobre el consentimiento de anuncios | Tu dispositivo | Hasta que la cambies |
 | Copia local de los grupos compartidos (caché) | Tu dispositivo | Hasta "Borrar cuenta" |
 | Categorías y objetivos compartidos, metadatos de conexión bancaria, identificador anónimo | Firebase / Google Cloud, región europe-west1 (UE) | Mientras uses la app; las cuentas anónimas inactivas 180 días se eliminan automáticamente |
 | Datos enviados a Gemini, AdMob, RevenueCat, Enable Banking | Servidores de cada proveedor, según sus políticas | Según cada proveedor |
 
-No existe ningún servidor de copia de seguridad de tus transacciones gestionado por ChillPocket, y la app no participa en la copia automática de Android en la nube. Cuando desinstalas la app, los datos locales se eliminan.
+No existe ningún servidor de copia de seguridad de tus transacciones gestionado por ChillPocket, y la app no participa en la copia automática de Android en la nube ni en la copia de iCloud en iPhone. Cuando desinstalas la app, los datos locales se eliminan.
 
 ---
 
@@ -162,9 +171,9 @@ No existe ningún servidor de copia de seguridad de tus transacciones gestionado
 
 - La clave de IA se almacena cifrada mediante el almacenamiento seguro del sistema operativo y nunca aparece en direcciones ni en los mensajes de error.
 - Las comunicaciones con Firebase, Gemini, RevenueCat y Enable Banking van cifradas (HTTPS).
-- Las peticiones a nuestro servidor (Firebase) se verifican con **Firebase App Check**, que usa la API Play Integrity de Google para comprobar que proceden de la app original. Esta verificación no incluye tus datos financieros.
+- Las peticiones a nuestro servidor (Firebase) se verifican con **Firebase App Check**, que usa la API Play Integrity de Google en Android y App Attest de Apple en iPhone para comprobar que proceden de la app original. Esta verificación no incluye tus datos financieros.
 - El acceso a los datos compartidos en Firebase está limitado por reglas de seguridad a los miembros de cada grupo, y las operaciones del grupo (entrar, salir, quitar, cambiar el reparto) las valida el servidor.
-- Las suscripciones se verifican a través de los canales seguros de Google Play y RevenueCat.
+- Las suscripciones se verifican a través de los canales seguros de Google Play, la App Store y RevenueCat.
 - Los registros técnicos de la app no incluyen códigos de invitación, claves ni datos financieros.
 
 ---
@@ -174,7 +183,7 @@ No existe ningún servidor de copia de seguridad de tus transacciones gestionado
 - **Acceso y portabilidad:** exporta todos tus datos en XLSX, CSV o PDF desde Ajustes → Descarga.
 - **Rectificación:** edita o elimina cualquier transacción, categoría u objetivo desde la propia app.
 - **Supresión:** en Ajustes → Zona de peligro → **Borrar cuenta** se eliminan de forma irreversible tu base de datos local, tus preferencias (idioma y tema incluidos), tu clave de IA, las notificaciones pendientes, la copia local de los grupos, tus conexiones bancarias, tu participación en categorías y objetivos compartidos y tu cuenta anónima en nuestro servidor. Quedan en el móvil únicamente dos cosas que no son de la cuenta sino del dispositivo: la marca de que la prueba gratuita ya se usó (es una por móvil) y el estado de tu suscripción en la tienda, que gestionan Google Play y RevenueCat.
-- **Retirar permisos:** puedes desactivar la lectura de notificaciones, el permiso para mostrar notificaciones, el micrófono o la cámara en cualquier momento desde los ajustes de Android.
+- **Retirar permisos:** puedes desactivar la lectura de notificaciones (Android), el permiso para mostrar notificaciones, el micrófono, el reconocimiento de voz, la cámara o las fotos en cualquier momento desde los ajustes de tu móvil. En iPhone, la captura de avisos se detiene apagándola en Ajustes de ChillPocket o borrando tu automatización en Atajos.
 - **Publicidad:** puedes cambiar tu decisión sobre los anuncios personalizados en Ajustes → *Opciones de privacidad de anuncios* (sección 2.9).
 
 Para cualquier consulta relacionada con la privacidad, escribe a **development@chillworks-apps.com**. Si consideras que no hemos atendido tus derechos, puedes reclamar ante la Agencia Española de Protección de Datos ([www.aepd.es](https://www.aepd.es)).
