@@ -1,6 +1,6 @@
 # Términos de Servicio — ChillPocket
 
-**Última actualización:** 24 de octubre de 2026  
+**Última actualización:** 24 de noviembre de 2026  
 **Desarrollador:** ChillWorks-apps  
 **Contacto:** development@chillworks-apps.com
 
@@ -14,7 +14,7 @@ Al descargar, instalar o usar ChillPocket ("la App"), aceptas estos Términos de
 
 ChillPocket es una aplicación de control financiero personal que permite registrar, categorizar y visualizar ingresos y gastos en tu moneda, programar movimientos recurrentes, establecer controles de gasto y objetivos de ahorro, recibir resúmenes semanales y mensuales, y compartir categorías u objetivos con otras personas. De forma opcional, ofrece funciones asistidas por inteligencia artificial (lectura de tickets por foto o desde una imagen compartida, entrada por voz), la anotación automática de compras a partir de los avisos de tus apps bancarias (en Android, leyendo sus notificaciones; en iPhone, mediante una automatización de la app Atajos que configuras tú) y, cuando esté disponible, la conexión con cuentas bancarias reales mediante Open Banking (Enable Banking).
 
-La App está disponible en ocho idiomas y en los países donde la publicamos en Google Play y en la App Store; algunas funciones dependen del país, del idioma de tu banco o de la versión de Android o iOS de tu dispositivo.
+La App está disponible en once idiomas y en los países donde la publicamos en Google Play y en la App Store; algunas funciones dependen del país, del idioma de tu banco o de la versión de Android o iOS de tu dispositivo.
 
 ## 3. Elegibilidad
 
@@ -22,9 +22,9 @@ La App no está dirigida a menores de 13 años. Si eres menor de edad según la 
 
 ## 4. Planes, prueba y suscripción
 
-- ChillPocket ofrece un **plan gratuito** con publicidad y un plan de pago, **ChillPocket Pro**, con funciones adicionales. El precio se muestra en la App y en la tienda (Google Play o App Store) en tu moneda local y puede variar según el país; el importe exacto es el que ves en la tienda antes de pagar.
-- Al empezar a usar la App puedes disfrutar, mientras esté disponible, de una **prueba gratuita con acceso completo** (actualmente de 7 días; la App te indica su duración), sin introducir ningún método de pago. Es de **un solo uso por dispositivo**: borrar la cuenta o reinstalar la App no la reinicia. Al terminar, la App pasa al plan gratuito salvo que contrates Pro; no se realiza ningún cobro automático.
-- La suscripción Pro se gestiona a través de Google Play (Android) o de la App Store de Apple (iPhone) y se procesa con RevenueCat. Se renueva automáticamente hasta que la canceles desde la tienda. Precios, facturación, cancelaciones y reembolsos se rigen por las políticas de la tienda; no ofrecemos reembolsos directos.
+- ChillPocket ofrece un **plan gratuito** con publicidad (un banner y, solo si eliges verlos, anuncios a pantalla completa) y un plan de pago, **ChillPocket Pro**, sin publicidad y con funciones adicionales. El precio se muestra en la App y en la tienda (Google Play o App Store) en tu moneda local y puede variar según el país; el importe exacto es el que ves en la tienda antes de pagar.
+- Al empezar a usar la App puedes disfrutar, mientras esté disponible, de una **prueba gratuita con acceso completo** (actualmente de 14 días; la App te indica su duración), sin introducir ningún método de pago. Es de **un solo uso por dispositivo**: borrar la cuenta no la reinicia, y no está permitido reinstalar la App ni borrar sus datos para repetirla (sección 11). Al terminar, la App pasa al plan gratuito salvo que contrates Pro; no se realiza ningún cobro automático.
+- ChillPocket Pro es una **suscripción mensual de renovación automática**. Se gestiona a través de Google Play (Android) o de la App Store de Apple (iPhone) y se procesa con RevenueCat. El cobro se hace en tu cuenta de la tienda al confirmar la compra y se repite cada mes hasta que la canceles; en la App Store, para evitar el siguiente cobro debes cancelarla al menos 24 horas antes de que termine el periodo en curso. Puedes gestionarla y cancelarla cuando quieras en los ajustes de suscripciones de tu cuenta de la tienda, también desde Ajustes → Mi Plan en la App. Precios, facturación, cancelaciones y reembolsos se rigen por las políticas de la tienda; no ofrecemos reembolsos directos.
 - Una suscripción contratada en Google Play solo puede restaurarse en dispositivos Android con la misma cuenta de Google, y una contratada en la App Store solo en dispositivos Apple con la misma cuenta de Apple. No se traslada de una tienda a la otra.
 - Si tu suscripción termina, conservas todos tus datos, pero las funciones Pro quedan desactivadas hasta que la renueves. En particular, las categorías y objetivos compartidos dejan de sincronizarse y quedan congelados en su último estado (sección 7).
 - Si la tienda no está disponible en tu dispositivo, la App sigue funcionando en el plan gratuito, pero no podrás contratar ni restaurar Pro hasta que lo esté.
@@ -39,7 +39,7 @@ La App no está dirigida a menores de 13 años. Si eres menor de edad según la 
 ## 6. Lectura de notificaciones bancarias, texto e imágenes compartidos
 
 - La anotación automática de avisos del banco es opcional. En Android requiere que concedas expresamente a la App el acceso a las notificaciones; puedes retirarlo cuando quieras. En iPhone la App no lee notificaciones: eres tú quien crea y mantiene una automatización en la app Atajos de Apple que entrega a la App el texto del aviso o los datos del pago con Apple Pay, y puedes editarla o borrarla cuando quieras.
-- En iPhone, la detección depende de que Atajos ejecute tu automatización, algo que controla Apple y que puede retrasarse, no ejecutarse o cambiar con las versiones de iOS; en iOS 17 a 26 solo se capturan los pagos con Apple Pay.
+- En iPhone, la detección depende de que Atajos ejecute tu automatización, algo que controla Apple y que puede retrasarse, no ejecutarse o cambiar con las versiones de iOS; en iOS 17 a 26 solo se capturan los pagos con Apple Pay. Los avisos se anotan cuando abres la App. Si tu plan Pro termina y mantienes la automatización, los avisos quedan en espera (como máximo 200) hasta que vuelvas a Pro, apagues la captura o borres la automatización.
 - La detección se basa en el texto que publican las apps de tu banco, que puede cambiar sin aviso. **No garantizamos** que todas las operaciones se detecten, ni que se detecten con la App cerrada (algunos fabricantes limitan las tareas en segundo plano), ni que los datos extraídos sean exactos; revisa siempre los movimientos anotados automáticamente y los que queden en Pendientes.
 - Los avisos en una moneda distinta de la tuya no se convierten: la App te pedirá el importe en tu moneda.
 - Eres responsable de elegir qué apps bancarias autorizas y de usar la función únicamente con cuentas de las que seas titular.
@@ -65,13 +65,13 @@ La App no está dirigida a menores de 13 años. Si eres menor de edad según la 
 
 ## 9. No somos un asesor financiero
 
-ChillPocket es una herramienta de organización y visualización de información financiera. No ofrece asesoramiento financiero, fiscal ni de inversión. Las estimaciones, alertas, resúmenes y proyecciones que muestra (ahorro, límites, jubilación, impuestos, etc.) son orientativos y no sustituyen el consejo de un profesional cualificado. Las notificaciones de la App (alertas de gasto, recordatorios, resúmenes) dependen de los permisos y la gestión de energía de tu dispositivo y pueden no llegar a tiempo.
+ChillPocket es una herramienta de organización y visualización de información financiera. No ofrece asesoramiento financiero, fiscal ni de inversión. Las estimaciones, alertas, resúmenes y proyecciones que muestra (ahorro, límites, jubilación, impuestos, etc.) son orientativos y no sustituyen el consejo de un profesional cualificado. Las notificaciones de la App (alertas de gasto, recordatorios, resúmenes) dependen de los permisos y la gestión de energía de tu dispositivo y pueden no llegar a tiempo; en iPhone, los resúmenes y las alertas se calculan cuando abres la App.
 
 ## 10. Tus datos y su conservación
 
 - Tus transacciones se guardan en tu dispositivo. Eres responsable de hacer copias con la función de exportación (Ajustes → Descarga) antes de cambiar de móvil, desinstalar la App o borrar tu cuenta; la App no participa en la copia de seguridad automática de Android en la nube ni en la copia de iCloud en iPhone.
-- Puedes eliminar todos tus datos, locales y en nuestro servidor, con la opción **Borrar cuenta** de Ajustes. Esta acción es irreversible. Solo queda en el dispositivo la marca de que la prueba gratuita ya se usó y el estado de tu suscripción en la tienda.
-- Si reinstalas la App o borras sus datos sin usar "Borrar cuenta", la cuenta anónima anterior queda sin uso y se elimina automáticamente de nuestro servidor tras 180 días de inactividad, saliendo de sus grupos compartidos.
+- Puedes eliminar todos tus datos, locales y en nuestro servidor, con la opción **Borrar cuenta** de Ajustes. Esta acción es irreversible. Solo quedan en el dispositivo unas marcas técnicas sin datos tuyos (por ejemplo, que la prueba gratuita ya se usó) y el estado de tu suscripción en la tienda.
+- Si reinstalas la App o borras sus datos sin usar "Borrar cuenta", la cuenta anónima anterior queda sin uso y se elimina automáticamente de nuestro servidor tras 180 días de inactividad, saliendo de sus grupos compartidos. En iPhone, el sistema puede conservar tu cuenta anónima y tu clave de IA aunque desinstales la App: usa "Borrar cuenta" antes de desinstalar si quieres eliminarlas.
 
 ## 11. Uso aceptable
 
